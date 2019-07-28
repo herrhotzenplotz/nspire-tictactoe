@@ -55,6 +55,7 @@ int main(void)
       SDL_FillRect(screen, NULL, 0x000000);
       render_game(screen, &game);
       SDL_Flip(screen);
+      idle();
     }
 
     SDL_Quit();
