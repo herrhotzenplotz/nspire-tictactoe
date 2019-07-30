@@ -9,6 +9,7 @@ const SDL_Color GRID_COLOR = { .r = 255, .g = 255, .b = 255, .unused = 255 };
 const SDL_Color PLAYER_X_COLOR = { .r = 255, .g = 50, .b = 50, .unused = 255};
 const SDL_Color PLAYER_O_COLOR = { .r = 50, .g = 100, .b = 255, .unused = 128};
 const SDL_Color TIE_COLOR = { .r = 100, .g = 100, .b = 100, .unused = 100 };
+extern nSDL_Font *font;
 
 void render_grid(SDL_Surface *renderer, const SDL_Color *color)
 {
@@ -112,6 +113,18 @@ void render_game_over_state(SDL_Surface *renderer,
                  game->board,
                  color,
                  color);
+
+    switch (game->player) {
+    case 1:
+      nSDL_DrawString(renderer, font, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2, "Player O won.");
+      break;
+    case 2:
+      nSDL_DrawString(renderer, font, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2, "Player X won.");
+      break;
+    default:
+      nSDL_DrawString(renderer, font, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2, "WTF!? Unknown player won.");
+      break;
+    }
 }
 
 void render_game(SDL_Surface *renderer, const game_t *game)

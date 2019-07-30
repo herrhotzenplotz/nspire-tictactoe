@@ -7,6 +7,8 @@
 #include "./logic.h"
 #include "./rendering.h"
 
+nSDL_Font *font;
+
 int main(void)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -20,6 +22,8 @@ int main(void)
         fprintf(stderr, "SDL_CreateRenderer Error: %s\n", SDL_GetError());
         return EXIT_FAILURE;
     }
+
+    font = nSDL_LoadFont(NSDL_FONT_VGA, 255, 255, 255);
 
     game_t game = {
         .board = { EMPTY, EMPTY, EMPTY,
