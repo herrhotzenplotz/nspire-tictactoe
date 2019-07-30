@@ -114,17 +114,22 @@ void render_game_over_state(SDL_Surface *renderer,
                  color,
                  color);
 
+    char *message;
+
     switch (game->player) {
     case 1:
-      nSDL_DrawString(renderer, font, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2, "Player O won.");
+      message = "Player O won.";
       break;
     case 2:
-      nSDL_DrawString(renderer, font, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2, "Player X won.");
+      message = "Player X won.";
       break;
     default:
-      nSDL_DrawString(renderer, font, SCREEN_WIDTH / 3, SCREEN_HEIGHT / 2, "WTF!? Unknown player won.");
+      message = "WTF!? Unknown player won.";
       break;
     }
+
+    int width = nSDL_GetStringWidth(font, message);
+    nSDL_DrawString(renderer, font, (SCREEN_WIDTH - width) * 0.5, SCREEN_HEIGHT * 0.5, message);
 }
 
 void render_game(SDL_Surface *renderer, const game_t *game)
