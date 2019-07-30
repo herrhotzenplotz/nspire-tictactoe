@@ -7,6 +7,8 @@
 #include "./logic.h"
 #include "./rendering.h"
 
+nSDL_Font *font;
+
 int main(void)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -21,6 +23,8 @@ int main(void)
         return EXIT_FAILURE;
     }
 
+    font = nSDL_LoadFont(NSDL_FONT_VGA, 255, 255, 255);
+
     game_t game = {
         .board = { EMPTY, EMPTY, EMPTY,
                    EMPTY, EMPTY, EMPTY,
@@ -31,8 +35,10 @@ int main(void)
 
     while (game.state != QUIT_STATE) {
         
-      if (isKeyPressed(KEY_NSPIRE_ESC))
+      if (isKeyPressed(KEY_NSPIRE_ESC)) {
 	game.state = QUIT_STATE;
+	break;
+      }
       else if (isKeyPressed(KEY_NSPIRE_1))
 	click_on_cell(&game, 2, 0);
       else if (isKeyPressed(KEY_NSPIRE_2))
@@ -56,8 +62,10 @@ int main(void)
       render_game(screen, &game);
       SDL_Flip(screen);
       idle();
+      wait_key_pressed();
     }
 
+    nSDL_FreeFont(font);
     SDL_Quit();
 
     return EXIT_SUCCESS;
