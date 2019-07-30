@@ -62,6 +62,7 @@ int main(void)
       idle();
     }
 
+    nSDL_FreeFont(font);
     SDL_Quit();
 
     return EXIT_SUCCESS;
