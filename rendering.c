@@ -8,6 +8,11 @@
 const SDL_Color GRID_COLOR = { .r = 255, .g = 255, .b = 255, .unused = 255 };
 const SDL_Color PLAYER_X_COLOR = { .r = 255, .g = 50, .b = 50, .unused = 255};
 const SDL_Color PLAYER_O_COLOR = { .r = 50, .g = 100, .b = 255, .unused = 128};
+const char *messages[] = { "WTF?! Did you hack me?",
+			   "Player X won." ,
+			   "Player O won.",
+			   "Tie :(",
+			   "Hmm...The game should not be running anymore at this point." };
 const SDL_Color TIE_COLOR = { .r = 100, .g = 100, .b = 100, .unused = 100 };
 extern nSDL_Font *font;
 
@@ -113,23 +118,8 @@ void render_game_over_state(SDL_Surface *renderer,
                  game->board,
                  color,
                  color);
-
-    char *message;
-
-    switch (game->player) {
-    case 1:
-      message = "Player O won.";
-      break;
-    case 2:
-      message = "Player X won.";
-      break;
-    default:
-      message = "WTF!? Unknown player won.";
-      break;
-    }
-
-    int width = nSDL_GetStringWidth(font, message);
-    nSDL_DrawString(renderer, font, (SCREEN_WIDTH - width) * 0.5, SCREEN_HEIGHT * 0.5, message);
+    int width = nSDL_GetStringWidth(font, messages[game->state]);
+    nSDL_DrawString(renderer, font, (SCREEN_WIDTH - width) * 0.5, SCREEN_HEIGHT * 0.5, messages[game->state]);
 }
 
 void render_game(SDL_Surface *renderer, const game_t *game)
