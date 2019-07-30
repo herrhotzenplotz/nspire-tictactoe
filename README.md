@@ -23,3 +23,11 @@ $ make
 
 * numpad for clicking on fields
 * ESC to exit
+
+## Contributions
+
+Contributions are explicitly welcome! If you don't want to contribute by opening a pull request (thus writing code yourself) please file an issue.
+
+## Issues / Bugs
+
+Feel free to use the issue tracker above to report any bugs, suggestions or improvements.
