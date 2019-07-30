@@ -2,8 +2,6 @@
 #define GAME_H_
 
 #define N 3
-#define SCREEN_WIDTH 320.0
-#define SCREEN_HEIGHT 240.0
 #define CELL_WIDTH (SCREEN_WIDTH / N)
 #define CELL_HEIGHT (SCREEN_HEIGHT / N)
 
