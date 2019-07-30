@@ -5,10 +5,10 @@
 #include "./game.h"
 #include "./rendering.h"
 
-const SDL_Color GRID_COLOR = { .r = 255, .g = 255, .b = 255 };
-const SDL_Color PLAYER_X_COLOR = { .r = 255, .g = 50, .b = 50 };
-const SDL_Color PLAYER_O_COLOR = { .r = 50, .g = 100, .b = 255 };
-const SDL_Color TIE_COLOR = { .r = 100, .g = 100, .b = 100 };
+const SDL_Color GRID_COLOR = { .r = 255, .g = 255, .b = 255, .unused = 255 };
+const SDL_Color PLAYER_X_COLOR = { .r = 255, .g = 50, .b = 50, .unused = 255};
+const SDL_Color PLAYER_O_COLOR = { .r = 50, .g = 100, .b = 255, .unused = 128};
+const SDL_Color TIE_COLOR = { .r = 100, .g = 100, .b = 100, .unused = 100 };
 
 void render_grid(SDL_Surface *renderer, const SDL_Color *color)
 {
@@ -18,11 +18,11 @@ void render_grid(SDL_Surface *renderer, const SDL_Color *color)
       vlineRGBA(renderer,
 		i * CELL_WIDTH,
 		0, SCREEN_HEIGHT,
-		color->r, color->g, color->b, 255);
+		color->r, color->g, color->b, color->unused);
       hlineRGBA(renderer,
 		0, SCREEN_WIDTH,
 		i * CELL_HEIGHT,
-		color->r, color->g, color->b, 255);
+		color->r, color->g, color->b, color->unused);
     }
 }
 
@@ -43,7 +43,7 @@ void render_x(SDL_Surface *renderer,
                   color->r,
                   color->g,
                   color->b,
-                  255);
+                  color->unused);
     thickLineRGBA(renderer,
 		  center_x - half_box_side,
                   center_y + half_box_side,
@@ -53,7 +53,7 @@ void render_x(SDL_Surface *renderer,
                   color->r,
                   color->g,
                   color->b,
-                  255);
+                  color->unused);
 }
 
 void render_o(SDL_Surface *renderer,
@@ -66,7 +66,7 @@ void render_o(SDL_Surface *renderer,
 
     filledCircleRGBA(renderer,
                      center_x, center_y, half_box_side + 5,
-                     color->r, color->g, color->b, 255);
+                     color->r, color->g, color->b, color->unused);
     filledCircleRGBA(renderer,
                      center_x, center_y, half_box_side - 5,
                      0, 0, 0, 255);
